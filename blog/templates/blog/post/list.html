@@ -8,6 +8,15 @@
     {% if tag %}
         <h2>Posts tagged with "{{ tag.name }}"</h2>
     {% endif %}
+    <p class="tags">Tags:
+        {% for tag in posts.tags.all %}
+            <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                {{ tag.name }}
+            </a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
 
     {% for post in posts %}
         <h2>
